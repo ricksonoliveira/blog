@@ -21,7 +21,7 @@ jobs:
         run: mix deps.get
       - name: LINT CODE
         run: mix credo --strict
-  lint: 
+  check_format: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/cache@v2
