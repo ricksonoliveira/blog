@@ -47,7 +47,6 @@ defmodule BlogWeb.Router do
   # coveralls-ignore-stop
 
   # Enables the Swoosh mailbox preview in development.
-  #
   # Note that preview only shows emails that were sent by the same
   # node running the Phoenix server.
   if Mix.env() == :dev do
