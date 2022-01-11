@@ -14,6 +14,7 @@ defmodule BlogWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
+
   # coveralls-ignore-stop
 
   scope "/", BlogWeb do
@@ -44,6 +45,7 @@ defmodule BlogWeb.Router do
       live_dashboard "/dashboard", metrics: BlogWeb.Telemetry
     end
   end
+
   # coveralls-ignore-stop
 
   # Enables the Swoosh mailbox preview in development.
