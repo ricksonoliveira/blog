@@ -6,7 +6,7 @@ jobs:
   lint: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v2
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
           otp-version: '23.0'
@@ -24,7 +24,7 @@ jobs:
   check_format: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v2
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
           otp-version: '23.0'
