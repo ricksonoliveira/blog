@@ -23,7 +23,7 @@ config :blog, BlogWeb.Endpoint,
 # locally. You can see the emails in your browser, at "/dev/mailbox".
 #
 # For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
+# at the `config/releases.exs`.
 config :blog, Blog.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
