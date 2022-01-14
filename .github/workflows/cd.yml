@@ -20,8 +20,8 @@ jobs:
           python-version: 3.8.1
       - uses: mhanberg/gigalixir-action@v0.4.3
         with:
-          GIGALIXIR_USERNAME: ${{ secrets.GIGALIR_USERNAME }}
-          GIGALIXIR_PASSWORD: ${{ secrets.GIGALIR_PASSWORD }}
+          GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
+          GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
           GIGALIXIR_APP: ${{ secrets.GIGALIXIR_APP }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: false
