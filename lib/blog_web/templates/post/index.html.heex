@@ -5,7 +5,11 @@
   <li class="collection-item">
     <div>
       <%= post.title %>
-      <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons red-text">delete</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons blue-text">edit</i></a>
+        <%= link to: Routes.post_path(@conn, :show, post.id), class: "secondary-content" do %>
+          <i class="material-icons blue-text">send</i>
+        <% end %>
     </div>
   </li>
   <% end %>
