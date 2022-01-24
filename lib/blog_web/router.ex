@@ -10,32 +10,11 @@ defmodule BlogWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  # coveralls-ignore-start
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
-  # coveralls-ignore-stop
-
   scope "/", BlogWeb do
     pipe_through :browser
-
-    # get "/posts", PostController, :index
-    # post "/posts", PostController, :create
-    # delete "/posts/:id", PostController, :delete
-
-    # get "/posts/new", PostController, :new
-    # get "/posts/:id", PostController, :show
-    # get "/posts/:id/edit", PostController, :edit
-    # put "/posts/:id", PostController, :update
     resources("/posts", PostController)
     get "/", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", BlogWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #
@@ -54,17 +33,5 @@ defmodule BlogWeb.Router do
       live_dashboard "/dashboard", metrics: BlogWeb.Telemetry
     end
   end
-
   # coveralls-ignore-stop
-
-  # Enables the Swoosh mailbox preview in development.
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
-  if Mix.env() == :dev do
-    scope "/dev" do
-      pipe_through :browser
-
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
-    end
-  end
 end
