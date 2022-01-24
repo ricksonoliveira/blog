@@ -4,14 +4,12 @@ defmodule Blog.PostsTest do
 
   @valid_post %{
     title: "Phoenix Framework",
-    description:
-      "Lorem."
+    description: "Lorem."
   }
 
   @update_post %{
     title: "Phoenix Framework Updated",
-    description:
-      "Lorem updated."
+    description: "Lorem updated."
   }
 
   def post_fixture(_attrs \\ %{}) do
@@ -38,7 +36,7 @@ defmodule Blog.PostsTest do
   test "update_post/2 with valid data" do
     post = post_fixture()
 
-    assert {:ok, %Post{} = post } = Posts.update_post(post.id, @update_post)
+    assert {:ok, %Post{} = post} = Posts.update_post(post.id, @update_post)
     assert post.title == "Phoenix Framework Updated"
     assert post.description == "Lorem updated."
   end

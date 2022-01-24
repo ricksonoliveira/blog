@@ -33,5 +33,6 @@ defmodule BlogWeb.Router do
       live_dashboard "/dashboard", metrics: BlogWeb.Telemetry
     end
   end
+
   # coveralls-ignore-stop
 end
