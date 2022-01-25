@@ -13,6 +13,7 @@ defmodule BlogWeb.PostControllerTest do
 
   def fixture(:post) do
     {:ok, post} = Blog.Posts.create_post(@valid_post)
+    post
   end
 
   test "render form to create a new post", %{conn: conn} do
@@ -78,7 +79,7 @@ defmodule BlogWeb.PostControllerTest do
     end
   end
 
-  defp create_post do
+  defp create_post(_) do
     %{post: fixture(:post)}
   end
 end
