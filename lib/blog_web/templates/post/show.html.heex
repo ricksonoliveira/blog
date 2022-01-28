@@ -16,12 +16,12 @@
       <div class="row">
         <div class="input-field col s10">
           <i class="material-icons prefix">mode_edit</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-          <label for="icon_prefix2">Comment</label>
+          <textarea id="comment" class="materialize-textarea"></textarea>
+          <label for="comment">Let us know your thoughts...</label>
         </div>
 
         <div class="input-field col s2">
-          <a class="waves-effect waves-light btn">button</a>
+          <a class="waves-effect waves-light btn" id="btn-comment">Comment</a>
         </div>
       </div>
     </form>
@@ -34,3 +34,9 @@
     </p>
   </li>
   </ul>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.createSocket(<%= @post.id %>)
+  })
+  </script>

@@ -3,10 +3,14 @@ defmodule BlogWeb.CommentsChannel do
 
   def join("comments:" <> post_id, payload, socket) do
     post = Blog.Posts.get_post_with_comments!(post_id)
-    {:ok, %{comments: post.comments}, socket}
+    {:ok, %{comments: post.comments}, assign(socket, :post_id, post.id)}
   end
 
-  def handle_id() do
+  def handle_in("comment:add", content, socket) do
+    response = socket.assigns.post_id
+    |> Blog.Comments.create_comment(content)
 
+    IO.inspect(response)
+    {:reply, :ok, socket}
   end
 end
