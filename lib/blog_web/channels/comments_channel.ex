@@ -10,7 +10,9 @@ defmodule BlogWeb.CommentsChannel do
     response = socket.assigns.post_id
     |> Blog.Comments.create_comment(content)
 
-    IO.inspect(response)
-    {:reply, :ok, socket}
+    case response do
+      {:ok, _comment} -> {:reply, :ok, socket}
+      {:error, changeset} -> {:reply, {:error, %{errors: changeset}}}
+    end
   end
 end

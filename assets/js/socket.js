@@ -2,11 +2,17 @@
 // you uncomment its entry in "assets/js/app.js".
 
 // Bring in Phoenix channels client library:
-import {Socket} from "phoenix"
+import {
+  Socket
+} from "phoenix"
 
 // And connect to the path in "lib/blog_web/endpoint.ex". We pass the
 // token for authentication. Read below how it should be used.
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {
+  params: {
+    token: window.userToken
+  }
+})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -58,14 +64,34 @@ socket.connect()
 const createSocket = (post_id) => {
   let channel = socket.channel(`comments:${post_id}`, {})
   channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-    .receive("error", resp => { console.log("Unable to join", resp) })
-  
+    .receive("ok", resp => {
+      getComments(resp.comments)
+    })
+    .receive("error", resp => {
+      console.log("Unable to join", resp)
+    })
+
   document.getElementById("btn-comment").addEventListener("click", () => {
     const content = document.getElementById("comment").value
-    channel.push("comment:add", {content: content})    
+    channel.push("comment:add", {
+      content: content
+    })
     document.getElementById("comment").value = ""
   })
+}
+
+function getComments(comments) {
+  const comments_list = resp.comments.map(comment => {
+    return `
+      <li class="collection-item avatar">
+        <i class="material-icons circle red">play_arrow</i>
+        <span class="title">Title</span>
+        <p>${comment.content}<p>
+        </p>
+      </li>
+    `;
+  })
+  document.querySelector(".collection").innerHTML = comments_list.join('')
 }
 
 window.createSocket = createSocket
