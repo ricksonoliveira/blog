@@ -10,3 +10,27 @@
     <% end %>
   </div>
 </div>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s10">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="comment" class="materialize-textarea"></textarea>
+          <label for="comment">Let us know your thoughts...</label>
+        </div>
+
+        <div class="input-field col s2">
+          <a class="waves-effect waves-light btn" id="btn-comment">Comment</a>
+        </div>
+      </div>
+    </form>
+  </div>
+<ul class="collection">
+</ul>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.createSocket(<%= @post.id %>)
+  })
+  </script>
