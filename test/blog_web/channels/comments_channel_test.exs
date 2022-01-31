@@ -1,7 +1,7 @@
 defmodule BlogWeb.CommentsChannelTest do
   use BlogWeb.ChannelCase
-  alias BlogWeb.UserSocket
   alias Blog.Posts
+  alias BlogWeb.UserSocket
 
   @valid_post %{
     title: "Phoenix Framework",
