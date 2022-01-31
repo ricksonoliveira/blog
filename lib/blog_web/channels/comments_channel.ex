@@ -11,8 +11,14 @@ defmodule BlogWeb.CommentsChannel do
     |> Blog.Comments.create_comment(content)
 
     case response do
-      {:ok, _comment} -> {:reply, :ok, socket}
-      {:error, changeset} -> {:reply, {:error, %{errors: changeset}}}
+      {:ok, comment} ->
+
+        broadcast!(socket, "comments:#{socket.assigns.post_id}:new", %{comment: comment})
+
+        {:reply, :ok, socket}
+
+      {:error, changeset} ->
+        {:reply, {:error, %{errors: changeset}}}
     end
   end
 end
