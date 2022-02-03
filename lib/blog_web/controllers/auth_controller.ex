@@ -5,8 +5,6 @@ defmodule BlogWeb.AuthController do
   plug Ueberauth
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
-    IO.inspect(auth)
-    IO.inspect(provider)
 
     user = %{
       token: auth.credentials.token,

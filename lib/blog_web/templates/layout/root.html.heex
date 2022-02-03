@@ -14,13 +14,17 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Not a Blog</a>
+        <%= link "Not a Blog", to: Routes.page_path(@conn, :index), class: "brand-logo" %>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">Welcome Student!</a></li>
-          <li><a href="#">Post Here</a></li>
-          <li>
-            <%= link "Posts", to: Routes.post_path(@conn, :index) %>
-          </li>
+          <%= if @conn.assigns[:user] do %>
+            <li><a href="#">Welcome <%= @conn.assigns[:user].email %> </a></li>
+            <li>
+              <%= link "Posts", to: Routes.post_path(@conn, :index) %>
+            </li>
+            <li><%= link "Logout", to: Routes.post_path(@conn, :index) %></li>
+          <% else %>
+            <li><%= link "Login", to: Routes.auth_path(@conn, :request) %></li>
+          <% end %>
         </ul>
       </div>
     </nav>
