@@ -21,9 +21,9 @@
             <li>
               <%= link "Posts", to: Routes.post_path(@conn, :index) %>
             </li>
-            <li><%= link "Logout", to: Routes.post_path(@conn, :index) %></li>
+            <li><%= link "Logout", to: Routes.auth_path(@conn, :logout) %></li>
           <% else %>
-            <li><%= link "Login", to: Routes.auth_path(@conn, :request) %></li>
+            <li><%= link "Login", to: Routes.auth_path(@conn, :request, "google") %></li>
           <% end %>
         </ul>
       </div>
