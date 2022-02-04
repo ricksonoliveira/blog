@@ -11,7 +11,6 @@ defmodule BlogWeb.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
-
     user = %{
       token: auth.credentials.token,
       email: auth.info.email,
@@ -34,7 +33,6 @@ defmodule BlogWeb.AuthController do
         |> redirect(to: Routes.page_path(conn, :index))
     end
 
-    IO.inspect(user)
     render(conn, "index.html")
   end
 end
