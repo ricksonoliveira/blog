@@ -63,6 +63,7 @@ defmodule BlogWeb.PostController do
 
   def check_owner(conn, _) do
     %{params: %{"id" => post_id}} = conn
+
     if Posts.get_post!(post_id).user_id == conn.assigns.user.id do
       conn
     else
