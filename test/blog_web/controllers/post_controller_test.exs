@@ -25,6 +25,15 @@ defmodule BlogWeb.PostControllerTest do
     assert html_response(conn, 200) =~ "Create Post"
   end
 
+  test "render form to create a new post without authenticated user", %{conn: conn} do
+    conn =
+      conn
+      |> get(Routes.post_path(conn, :new))
+      assert redirected_to(conn) == Routes.page_path(conn, :index)
+      conn = get(conn, Routes.page_path(conn, :index))
+      assert html_response(conn, 200) =~ "Unauthorized: You need to be looged in to perform this action!"
+  end
+
   test "create a new post", %{conn: conn} do
     conn =
       conn
@@ -71,6 +80,19 @@ defmodule BlogWeb.PostControllerTest do
         |> Plug.Test.init_test_session(user_id: 1)
         |> get(Routes.post_path(conn, :edit, post))
       assert html_response(conn, 200) =~ "Edit Post"
+    end
+
+    test "should trhow error when rendering form to edit post", %{conn: conn} do
+      user = Blog.Accounts.get_user!(1)
+      {:ok, post} = Blog.Posts.create_post(user, @valid_post)
+      conn =
+        conn
+        |> Plug.Test.init_test_session(user_id: 2)
+        |> get(Routes.post_path(conn, :edit, post))
+
+        assert redirected_to(conn) == Routes.page_path(conn, :index)
+        conn = get(conn, Routes.page_path(conn, :index))
+        assert html_response(conn, 200) =~ "You have no authorization to perform this operation."
     end
 
     test "update a post", %{conn: conn, post: post} do

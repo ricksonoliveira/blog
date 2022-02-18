@@ -9,7 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias Blog.{Accounts, Posts, Posts.Post}
+alias Blog.{Accounts, Posts}
 
 user = %{
   email: "riksongleison471@gmail.com",
@@ -22,6 +22,17 @@ user = %{
     "ya29.A0ARrdaM949iSTPMJXI1JC64ncsxC8vxNCJtGdvbYc6gFJbDbSNYKV2x3pJ8b4ugLpaUBs3etmV7MGT1pN_C8868KM25aN5x1nEHYIxEiwW_aHV3-851CfCod-OdzSHs-dbkwQUy3WaOJcOQ-kr0SPg2AndHO9"
 }
 
+user_two = %{
+  email: "asdasd@gmail.com",
+  first_name: nil,
+  image:
+    "https://lh3.asdasd.com/a-/AOh14Ggj38VbKMhfIQKgGLrX-DQfQj8TZWdULXTwp0ea7A=s96-c",
+  last_name: nil,
+  provider: "google",
+  token:
+    "ya29.A0ARrdaasdasM949iSTPMJXI1JC64ncsxC8vxNCJtGdvbYc6gFJbDbSNYKV2x3pJ8b4ugLpaUBs3etmV7MGT1pN_C8868KM25aN5x1nEHYIxEiwW_aHV3-851CfCod-OdzSHs-dbkwQUy3WaOJcOQ-kr0SPg2AndHO9"
+}
+
 post = %{
   title: "Postgres SQL",
   description:
@@ -29,6 +40,5 @@ post = %{
 }
 
 {:ok, user} = Accounts.create_user(user)
-{:ok, phoenix} = Posts.create_post(user, post)
-
-IO.inspect(user)
+{:ok, _user_two} = Accounts.create_user(user_two)
+{:ok, _phoenix} = Posts.create_post(user, post)
