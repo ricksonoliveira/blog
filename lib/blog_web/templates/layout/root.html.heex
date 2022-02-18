@@ -12,18 +12,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Not a Blog</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">Welcome Student!</a></li>
-          <li><a href="#">Post Here</a></li>
-          <li>
-            <%= link "Posts", to: Routes.post_path(@conn, :index) %>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <%= render BlogWeb.SharedView, "_menu.html", assigns %>
     <%= @inner_content %>
   </body>
 </html>
