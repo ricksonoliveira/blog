@@ -51,7 +51,7 @@ defmodule Blog.AccountsTest do
     end
 
     test "create_user/1 with invalid data returns error datacase" do
-      assert {:error,changeset} = Accounts.create_user(@invalid_attrs)
+      assert {:error, changeset} = Accounts.create_user(@invalid_attrs)
       assert "can't be blank" in errors_on(changeset).provider
     end
 
