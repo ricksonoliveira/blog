@@ -10,8 +10,9 @@ defmodule BlogWeb.CommentsChannelTest do
 
   setup do
     user = Blog.Accounts.get_user!(1)
+    token = Phoenix.Token.sign(BlogWeb.Endpoint, "blog_user", user.id)
     {:ok, post} = Posts.create_post(user, @valid_post)
-    {:ok, socket} = connect(UserSocket, %{})
+    {:ok, socket} = connect(UserSocket, %{"token" => token})
 
     {:ok, socket: socket, post: post}
   end
