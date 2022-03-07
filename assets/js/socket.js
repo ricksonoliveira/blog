@@ -96,9 +96,9 @@ function includeComment(event) {
 function template(comment) {
   return `
       <li class="collection-item avatar">
-        <i class="material-icons circle red">play_arrow</i>
-        <span class="title">Title</span>
-        <p>${comment.content}<p>
+        <img src="${comment.user.image}" class="circle">
+        <span class="title">${comment.user.email}</span>
+        <p>${comment.content}<p> 
         </p>
       </li>
     `;
