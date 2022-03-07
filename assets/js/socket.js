@@ -71,15 +71,17 @@ const createSocket = (post_id) => {
       console.log("Unable to join", resp)
     })
   
-    channel.on(`comments:${post_id}:new`, includeComment)
+  channel.on(`comments:${post_id}:new`, includeComment)
 
-  document.getElementById("btn-comment").addEventListener("click", () => {
-    const content = document.getElementById("comment").value
-    channel.push("comment:add", {
-      content: content
+  if (window.userToken) {
+    document.getElementById("btn-comment").addEventListener("click", () => {
+      const content = document.getElementById("comment").value
+      channel.push("comment:add", {
+        content: content
+      })
+      document.getElementById("comment").value = ""
     })
-    document.getElementById("comment").value = ""
-  })
+  }
 }
 
 function getComments(comments) {
